@@ -7,8 +7,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphHead" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="Server">
-    <div id="dvError" runat="server" visible="false" class="alert-danger dvError" align="center"></div>
+   <div id="dvError" runat="server" visible="false" class="alert-danger dvError" align="center" style="background-color:yellow; font-size:larger; color:red"></div>
     <asp:HiddenField ID="hdnIdGuia" runat="server" />
+        <br />
         
         <h5 style="text-align: center;"><b>GUÍA DE ACTIVOS</b></h5>
 
