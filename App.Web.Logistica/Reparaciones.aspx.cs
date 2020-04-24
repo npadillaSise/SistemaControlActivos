@@ -190,6 +190,7 @@ namespace App.Web.Logistica
             try
             {
                 validarFechas(txtFecReparacion);
+                compararFechas(txtFechaEnvio, txtFecReparacion);
                 validar_campos();
 
                 transacciones objTrans = new transacciones();
@@ -243,7 +244,7 @@ namespace App.Web.Logistica
                 if (objTrans.fun_registrar_reparacion(rep, detalle, guia))
                 {
                     //Response.Write("listo");
-                    this.Page.Response.Write("<script language ='JavaScript'>window.alert('Se registró la Recepción del Activo'); </script>");
+                    this.Page.Response.Write("<script language ='JavaScript'>window.alert('Se Registró la Recepción del Activo'); </script>");
 
                     BtnRegistrar.Enabled = false;
                     BtnImprimir.Enabled = true;
@@ -745,6 +746,32 @@ namespace App.Web.Logistica
                 throw new Exception("Ingrese Nro de Comprobante");
             }                        
         }
-      
+
+        private void compararFechas(TextBox txtFec1, TextBox txtFec2)
+        {
+            try
+            {
+                DateTime fec1 = Convert.ToDateTime(txtFec1.Text);
+                DateTime fec2 = Convert.ToDateTime(txtFec2.Text);
+
+                if (fec2 < fec1)
+                {
+                    txtFec2.Focus();
+                    txtFec2.BackColor = System.Drawing.Color.Yellow;
+
+                    throw new Exception("La fecha de vencimiento de la reparación no puede ser menor que la fecha del envío");
+                }
+                else
+                {
+                    txtFec2.BackColor = System.Drawing.Color.White;
+                    dvError.Visible = false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
